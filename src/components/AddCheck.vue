@@ -22,7 +22,6 @@
                   <del class="div-body-data-table-dl-dt-del" v-if="el.isSelected">{{el.itemName}}</del>
                   <span v-else>{{el.itemName}}</span>
                 </span>
-                <Input v-else v-model="el.itemName" :autofocus="true" class="div-body-data-table-dl-dt-input" size="small" @on-blur="itemInputOnBlur(index)" @on-enter="itemInputOnBlur(index)"></Input>
               </Checkbox></dt>
           </dl>
         </div>
@@ -41,7 +40,6 @@ export default {
   name: 'AddCheck',
   data () {
     return {
-      single: false,
       items: [],
       itemsByStatus: [],
       itemName: '',
