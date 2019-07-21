@@ -40,6 +40,21 @@
     margin-top: 10px;
 }
 
+.div-body{
+    margin-top: 30px;
+    text-align: left;
+    margin-left: 45px;
+    height: 400px;
+}
+
+.div-body-input{
+    width: 550px !important;
+}
+
+.div-body-add-button{
+    margin-left: 10px;width: 70px;
+}
+
 .div-footer{
     margin-left: 20px;
 }

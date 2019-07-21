@@ -9,7 +9,24 @@
           <h3><i>Simple Todo List with adding and filter by diff status.</i></h3>
         </div>
       </div>
-     
+      <div class="div-body">
+        <Input type="text" size="large" class="div-body-input" v-model="itemName"/>
+        <Button type="primary" size="large" class="div-body-add-button" @click="addItem">Add</Button>
+        <div class="div-body-data-table">
+          <dl class="div-body-data-table-dl">
+            <dt class="div-body-data-table-dl-dt" v-for="(el, index) in itemsByStatus" :key="index">
+              <span class="div-body-data-table-dl-dt-del" v-if="el.isSelected">{{index + 1}}. </span>
+              <span v-else>{{index + 1}}. </span>
+              <Checkbox v-model="el.isSelected" size="large" class="div-body-data-table-dl-dt-checkbox">
+                <span v-if="!el.isEditing" @dblclick="editItemName(index)">
+                  <del class="div-body-data-table-dl-dt-del" v-if="el.isSelected">{{el.itemName}}</del>
+                  <span v-else>{{el.itemName}}</span>
+                </span>
+                <Input v-else v-model="el.itemName" :autofocus="true" class="div-body-data-table-dl-dt-input" size="small" @on-blur="itemInputOnBlur(index)" @on-enter="itemInputOnBlur(index)"></Input>
+              </Checkbox></dt>
+          </dl>
+        </div>
+      </div>
       <div class="div-footer">
         <Button size="large" class="div-footer-button" @click="filterItems(1)">All</Button>
         <Button size="large" class="div-footer-button" @click="filterItems(2)">Active</Button>
