@@ -49,7 +49,40 @@ export default {
     }
   },
   methods: {
-   
+   addItem() {
+      if (this.itemName !== '') {
+        let item = {
+          itemName: this.itemName,
+          isSelected: this.tableStatus === 3 ? true : false,
+          isEditing: false
+        };
+        this.items.push(item);
+        this.itemsByStatus.push(item);
+        this.itemName = '';
+      } else {
+        this.$Message.error('Can not add a null item');
+      }
+    },
+    filterItems(status) {
+      this.tableStatus = status;
+      if (status === 1) {
+        this.itemsByStatus = JSON.parse(JSON.stringify(this.items));
+      } else if (status === 2) {
+        this.itemsByStatus = this.items.filter((item) => {
+          return !item.isSelected;
+        })
+      } else if (status === 3) {
+        this.itemsByStatus = this.items.filter((item) => {
+          return item.isSelected;
+        })
+      }
+    },
+    editItemName(index) {
+      this.itemsByStatus[index].isEditing = true;
+    },
+    itemInputOnBlur(index) {
+      this.itemsByStatus[index].isEditing = false;
+    }
   }
 }
 </script>
