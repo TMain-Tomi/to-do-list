@@ -1,0 +1,57 @@
+#app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+}
+
+.ivu-checkbox-large .ivu-checkbox-inner{
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.ivu-checkbox-large .ivu-checkbox-checked .ivu-checkbox-inner:after{
+    top: 2px;
+    left: 6px;
+}
+
+.div-card{
+    width: 800px;
+    margin: 100px auto;
+    background-color: white;
+    font-size: 18px;
+    border-radius: 10px !important;
+}
+
+.div-header{
+    margin-top: 30px;
+    margin-left: 45px;
+}
+
+.div-header-title{
+    width: 100%;
+    text-align: left;
+}
+
+.div-header-comment{
+    width: 100%;
+    text-align: left;
+    margin-top: 10px;
+}
+
+.div-footer{
+    margin-left: 20px;
+}
+
+.div-footer-button{
+    color: #2d8cf0;
+    width:70px;
+    margin-right: 50px;
+}
+
+.div-footer-button-complete{
+    color: #2d8cf0;
+    width:100px;
+    margin-right: 50px;
+}
