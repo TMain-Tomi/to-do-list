@@ -18,7 +18,6 @@ const store = new Vuex.Store({
   },
   mutations:{
     getdoList(state){
-      
       axios.get('http://localhost:8080/dolists')
       .then(function (response) {
         console.log(response.data);
