@@ -15,14 +15,8 @@
         <div class="div-body-data-table">
           <dl class="div-body-data-table-dl">
             <dt class="div-body-data-table-dl-dt" v-for="(el, index) in itemsByStatus" :key="index">
-              <span class="div-body-data-table-dl-dt-del" v-if="el.isSelected">{{index + 1}}. </span>
-              <span v-else>{{index + 1}}. </span>
-              <Checkbox v-model="el.isSelected" size="large" class="div-body-data-table-dl-dt-checkbox">
-                <span v-if="!el.isEditing" @dblclick="editItemName(index)">
-                  <del class="div-body-data-table-dl-dt-del" v-if="el.isSelected">{{el.itemName}}</del>
-                  <span v-else>{{el.itemName}}</span>
-                </span>
-              </Checkbox></dt>
+              <TodoItem :ItemData="{el:el ,index:index}"></TodoItem>
+            </dt>
           </dl>
         </div>
       </div>
@@ -36,8 +30,12 @@
 </template>
 
 <script>
+import TodoItem from './TodoItem.vue'
 export default {
   name: 'AddCheck',
+   components: {
+    TodoItem
+  },
   data () {
     return {
       items: [],
@@ -74,12 +72,6 @@ export default {
           return item.isSelected;
         })
       }
-    },
-    editItemName(index) {
-      this.itemsByStatus[index].isEditing = true;
-    },
-    itemInputOnBlur(index) {
-      this.itemsByStatus[index].isEditing = false;
     }
   }
 }
