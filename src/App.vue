@@ -8,6 +8,14 @@
 import AddCheck from './components/AddCheck.vue'
 export default {
   name: 'app',
+  mounted:function(){
+    this.getdoList()
+  },
+  methods:{
+    getdoList:function(){
+      this.$store.commit("getdoList")
+    }
+  },
   components: {
     AddCheck
   }

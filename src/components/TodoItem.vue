@@ -7,6 +7,7 @@
             <del class="div-body-data-table-dl-dt-del" v-if="ItemData.el.isSelected">{{ItemData.el.itemName}}</del>
             <span v-else>{{ItemData.el.itemName}}</span>
             </span>
+            <Input v-else v-model="ItemData.el.itemName" :autofocus="true" class="div-body-data-table-dl-dt-input" size="small" @on-blur="itemOnBlur(ItemData.index)" @on-enter="itemOnBlur(ItemData.index)"/>
         </Checkbox>
     </div>
 </template>

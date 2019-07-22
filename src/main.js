@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import App from './App.vue'
-import iView from 'iview';
+import iView from 'iview'
 import Vuex from 'vuex'
+import axios from 'axios'
 import 'iview/dist/styles/iview.css';
 
+Vue.prototype.$ajax=axios
 Vue.config.productionTip = false
 Vue.use(Vuex);
 Vue.use(iView);
@@ -15,6 +17,14 @@ const store = new Vuex.Store({
     tableStatus: 1
   },
   mutations:{
+    getdoList(state){
+      axios.get('http://localhost:8080/dolists')
+      .then(function (response) {
+        console.log(response.data);
+        console.log(JSON.stringify(response.data));
+        state.itemsByStatus = JSON.parse(JSON.stringify(response.data));
+      })
+    },
     addItem(state,data){
       let item = {
         itemName: data,
@@ -23,6 +33,16 @@ const store = new Vuex.Store({
       };
       state.items.push(item);
       state.itemsByStatus.push(item);
+      axios.post('http://localhost:8080/dolists', {
+        listValue: data,
+        isEditing: false
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
       state.itemName = '';
     },
     filterItems(state,data){
@@ -41,9 +61,27 @@ const store = new Vuex.Store({
     },
     editName(state,data){
       state.itemsByStatus[data].isEditing = true;
+      axios.put('http://localhost:8080/dolists', {
+        index: data
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     },
     itemOnBlur(state,data){
       state.itemsByStatus[data].isEditing = false;
+      axios.put('http://localhost:8080/dolists', {
+        index: data
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     }
   }
 })
