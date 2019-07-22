@@ -1,14 +1,7 @@
 <template>
   <div>
     <Card class="div-card">
-      <div class="div-header">
-        <div class="div-header-title">
-          <h1>Jquery To Do List</h1>
-        </div>
-        <div class="div-header-comment">
-          <h3><i>Simple Todo List with adding and filter by diff status.</i></h3>
-        </div>
-      </div>
+      <TodoHeader></TodoHeader>
       <div class="div-body">
         <Input type="text" size="large" class="div-body-input" v-model="itemName"/>
         <Button type="primary" size="large" class="div-body-add-button" @click="addItem">Add</Button>
@@ -31,10 +24,12 @@
 
 <script>
 import TodoItem from './TodoItem.vue'
+import TodoHeader from './TodoHeader.vue'
 export default {
   name: 'AddCheck',
    components: {
-    TodoItem
+    TodoItem,
+    TodoHeader
   },
   data () {
     return {
