@@ -13,11 +13,7 @@
           </dl>
         </div>
       </div>
-      <div class="div-footer">
-        <Button size="large" class="div-footer-button" @click="filterItems(1)">All</Button>
-        <Button size="large" class="div-footer-button" @click="filterItems(2)">Active</Button>
-        <Button size="large" class="div-footer-button-complete" @click="filterItems(3)">Complete</Button>
-      </div>
+    <TodoFooter @filterItems="filterItems"></TodoFooter>
     </Card>
   </div>
 </template>
@@ -25,11 +21,13 @@
 <script>
 import TodoItem from './TodoItem.vue'
 import TodoHeader from './TodoHeader.vue'
+import TodoFooter from './TodoFooter.vue'
 export default {
   name: 'AddCheck',
    components: {
     TodoItem,
-    TodoHeader
+    TodoHeader,
+    TodoFooter
   },
   data () {
     return {
