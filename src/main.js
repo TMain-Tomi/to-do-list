@@ -6,6 +6,7 @@ import axios from 'axios'
 import Router from 'vue-router'
 import 'iview/dist/styles/iview.css'
 import router from './router.js'
+import {Message} from 'iview'
 // import store from './store.js'
 Vue.prototype.$ajax=axios
 Vue.config.productionTip = false
@@ -38,13 +39,17 @@ const store = new Vuex.Store({
         isSelecting: false
       })
       .then( (response) =>{
-        console.log(response.data.Error)
-        if(response.data.Error!==''){
-          //this.$Message.error(response.data.Error)
-          context.commit('setErrorMassage',response.data.Error)
-        }else{
-          context.commit('addItem',response)
-        }
+        // console.log(response.data.Error)
+        // if(response.data.Error!==''){
+        //   context.commit('setErrorMassage',response.data.Error)
+        // }else{
+          if(response.data.Error!==undefined&& response.data.Error!==''){
+            Message.error(response.data.Error)
+          }else{
+             context.commit('addItem',response)
+          }
+         
+        // }
       })
       this.state.itemName = '';
     },
