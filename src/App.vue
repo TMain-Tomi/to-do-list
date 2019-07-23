@@ -13,7 +13,7 @@ export default {
   },
   methods:{
     getdoList:function(){
-      this.$store.commit("getdoList")
+      this.$store.dispatch('getdoList')
     }
   },
   components: {

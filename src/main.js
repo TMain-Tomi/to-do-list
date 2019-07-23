@@ -16,38 +16,64 @@ const store = new Vuex.Store({
     itemName: '',
     tableStatus: 1
   },
-  mutations:{
-    getdoList(state){
+  actions:{
+    getdoList(context){
       axios.get('http://localhost:8080/dolists')
       .then(function (response) {
-        console.log(response.data);
-        console.log(JSON.stringify(response.data));
-        state.itemsByStatus = JSON.parse(JSON.stringify(response.data));
+        context.commit('getdoList',response)
       })
     },
-    addItem(state,data){
+    addItem(context,data){
       let item = {
         itemName: data,
-        isSelected: state.tableStatus === 3 ? true : false,
+        isSelected: this.state.tableStatus === 3 ? true : false,
         isEditing: false
       };
-      state.items.push(item);
-      state.itemsByStatus.push(item);
       axios.post('http://localhost:8080/dolists', {
         listValue: data,
-        isEditing: false
+        isSelecting: false
       })
       .then(function (response) {
-        console.log(response);
+        context.commit('addItem',response)
       })
-      .catch(function (error) {
-        console.log(error);
-      });
-      state.itemName = '';
+      this.state.itemName = '';
+    },
+    clickTese(context,data){
+      axios.put('http://localhost:8080/dolists/'+data)
+      .then(function (response) {
+        context.commit('clickTese',response)
+      })
+    },
+    remove(context,data){
+      axios.delete('http://localhost:8080/dolists/'+data)
+      .then(function (response) {
+        context.commit('remove',response)
+      })
+    }
+  },
+  mutations:{
+    getdoList(state,response){
+      store.commit('getItems',response)
+    },
+    addItem(state,response){
+      store.commit('getItems',response)
+    },
+    clickTese(state,response){
+      store.commit('getItems',response)
+    },
+    remove(state,response){
+      store.commit('getItems',response)
+    },
+    getItems(state,response){
+      state.itemsByStatus = JSON.parse(JSON.stringify(response.data));
+      state.items =  JSON.parse(JSON.stringify(response.data));
     },
     filterItems(state,data){
+      console.log(data)
       state.tableStatus = data;
+      //debugger
       if (data === 1) {
+       // console.log(state.items)
         state.itemsByStatus = JSON.parse(JSON.stringify(state.items));
       } else if (data === 2) {
         state.itemsByStatus =state.items.filter((item) => {
@@ -61,27 +87,9 @@ const store = new Vuex.Store({
     },
     editName(state,data){
       state.itemsByStatus[data].isEditing = true;
-      axios.put('http://localhost:8080/dolists', {
-        index: data
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
     },
     itemOnBlur(state,data){
       state.itemsByStatus[data].isEditing = false;
-      axios.put('http://localhost:8080/dolists', {
-        index: data
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
     }
   }
 })

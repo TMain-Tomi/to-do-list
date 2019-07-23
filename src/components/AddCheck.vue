@@ -32,7 +32,8 @@ export default {
   methods: {
    addItem() {
       if (this.$store.state.itemName !== '') {
-        this.$store.commit("addItem",this.$store.state.itemName)
+        this.$store.dispatch('addItem',this.$store.state.itemName)
+        //this.$store.commit("addItem",this.$store.state.itemName)
       } else {
         this.$Message.error('Can not add a null item');
       }
