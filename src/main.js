@@ -3,18 +3,22 @@ import App from './App.vue'
 import iView from 'iview'
 import Vuex from 'vuex'
 import axios from 'axios'
-import 'iview/dist/styles/iview.css';
-
+import Router from 'vue-router'
+import 'iview/dist/styles/iview.css'
+import router from './router.js'
+// import store from './store.js'
 Vue.prototype.$ajax=axios
 Vue.config.productionTip = false
 Vue.use(Vuex);
 Vue.use(iView);
+Vue.use(Router)
 const store = new Vuex.Store({
   state: {
     items: [],
     itemsByStatus: [],
     itemName: '',
-    tableStatus: 1
+    tableStatus: 1,
+    errorMassage: ''
   },
   actions:{
     getdoList(context){
@@ -33,8 +37,14 @@ const store = new Vuex.Store({
         listValue: data,
         isSelecting: false
       })
-      .then(function (response) {
-        context.commit('addItem',response)
+      .then( (response) =>{
+        console.log(response.data.Error)
+        if(response.data.Error!==''){
+          //this.$Message.error(response.data.Error)
+          context.commit('setErrorMassage',response.data.Error)
+        }else{
+          context.commit('addItem',response)
+        }
       })
       this.state.itemName = '';
     },
@@ -58,6 +68,10 @@ const store = new Vuex.Store({
     addItem(state,response){
       store.commit('getItems',response)
     },
+    setErrorMassage(state,data){
+       this.state.errorMassage = data
+    }
+    ,
     clickTese(state,response){
       store.commit('getItems',response)
     },
@@ -94,6 +108,7 @@ const store = new Vuex.Store({
   }
 })
 new Vue({
+  router,
   store,
   render: h => h(App),
 }).$mount('#app')

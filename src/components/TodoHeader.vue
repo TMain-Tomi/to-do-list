@@ -12,3 +12,4 @@
 export default {
   name: 'TodoHeader'
 }
+</script>

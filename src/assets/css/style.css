@@ -123,3 +123,21 @@
     border: none;
 
 }
+.div-page-top-span{
+    float: left;
+}
+.div-page-top{
+    height: 100px;
+}
+.div-page-content{
+    height: 500px;
+}
+.div-page-content-left{
+    width: 150px;
+}
+.div-page-top-doList{
+    float: left;
+}
+.div-page-top-name{
+    padding-top: 100px;
+}

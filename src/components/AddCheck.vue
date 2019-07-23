@@ -34,9 +34,13 @@ export default {
       if (this.$store.state.itemName !== '') {
         this.$store.dispatch('addItem',this.$store.state.itemName)
         //this.$store.commit("addItem",this.$store.state.itemName)
+       
       } else {
         this.$Message.error('Can not add a null item');
-      }
+      } 
+      // if(this.$store.state.errorMassage!==''){
+      //     this.$Message.error(this.$store.state.errorMassage)
+      //   }
     },
     filterItems(status) {
      this.$store.commit("filterItems",status)
