@@ -136,7 +136,7 @@
 }
 .div-page-content-left{
     height: 700px;
-    background-color: darksalmon;
+    /* background-color: darksalmon; */
     width: 15%;
 }
 .div-page-content-right{

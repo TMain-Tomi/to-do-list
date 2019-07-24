@@ -6,10 +6,15 @@ import axios from 'axios'
 import Router from 'vue-router'
 import 'iview/dist/styles/iview.css'
 import router from './router.js'
+import Antd from 'ant-design-vue'
+import 'ant-design-vue/dist/antd.css'
 import {Message} from 'iview'
+import Button from "ant-design-vue/lib/button"
 // import store from './store.js'
+Vue.component(Button.name, Button)
 Vue.prototype.$ajax=axios
 Vue.config.productionTip = false
+Vue.use(Antd)
 Vue.use(Vuex);
 Vue.use(iView);
 Vue.use(Router)
