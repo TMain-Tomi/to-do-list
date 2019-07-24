@@ -2,7 +2,7 @@
     <div class="div-page">
         <div class="div-page-top">
             <!-- <button @click="goto()"> back</button> -->
-            <router-link to="/welcome"><span class="div-page-top-span">back</span></router-link>
+            <router-link to="/"><span class="div-page-top-span">back</span></router-link>
 
             <span class="div-page-top-name">{{$route.params.name}}</span>
         </div>
@@ -21,7 +21,7 @@ export default {
   name: 'HomePage',
   data(){
         return{
-            name:'this'
+            name:''
         }
     },
   methods:{

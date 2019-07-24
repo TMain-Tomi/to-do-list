@@ -124,19 +124,32 @@
 
 }
 .div-page-top-span{
+    font-size: 30px;
     float: left;
 }
 .div-page-top{
     height: 100px;
+    background-color: greenyellow
 }
 .div-page-content{
     height: 500px;
 }
 .div-page-content-left{
-    width: 150px;
+    height: 700px;
+    background-color: darksalmon;
+    width: 15%;
+}
+.div-page-content-right{
+    margin-top:-700px;
+    float:right;
+    width: 85%;
 }
 .div-page-top-doList{
+    margin-top:5px;
+    background-color: aqua;
+    font-size:30px;
     float: left;
+    width:100%
 }
 .div-page-top-name{
     padding-top: 100px;
